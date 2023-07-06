@@ -129,5 +129,25 @@ public class DbYuGiHo extends DbHelper {
 
         return listaCartas;
     }
+    public Carta obtenerDetalleCarta(int cartaId) {
+        SQLiteDatabase db = getReadableDatabase();
+        String[] projection = {
+                COLUMN_NOMBRE,
+                COLUMN_ATAQUE,
+                COLUMN_DEFENSA
+        };
+        String selection = COLUMN_ID + " = ?";
+        String[] selectionArgs = {String.valueOf(cartaId)};
+        Cursor cursor = db.query(TABLE_CARTAS, projection, selection, selectionArgs, null, null, null);
+        Carta carta = null;
+        if (cursor != null && cursor.moveToFirst()) {
+            String nombre = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NOMBRE));
+            String ataque = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ATAQUE));
+            String defensa = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DEFENSA));
+            carta = new Carta(cartaId, nombre, ataque, defensa);
+            cursor.close();
+        }
+        return carta;
+    }
 
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.comupngarciahernandezfinal.adapter.CartaAdapter;
@@ -33,5 +34,20 @@ public class ListaCartasActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         cartaAdapter = new CartaAdapter(listaCartas);
         recyclerView.setAdapter(cartaAdapter);
+
+        cartaAdapter.setOnItemClickListener(new CartaAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Carta cartaSeleccionada = listaCartas.get(position);
+                int cartaId = cartaSeleccionada.getId();
+                Intent intent = new Intent(ListaCartasActivity.this, DetalleCartaActivity.class);
+                intent.putExtra("cartaId", cartaId);
+                startActivity(intent);
+            }
+        });
+
     }
+
+
+
 }
