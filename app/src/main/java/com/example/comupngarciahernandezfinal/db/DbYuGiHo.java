@@ -105,6 +105,7 @@ public class DbYuGiHo extends DbHelper {
             SQLiteDatabase db = getReadableDatabase();
             Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_CARTAS + " WHERE duelistaId = ?", new String[]{String.valueOf(duelistaId)});
 
+            int idIndex = cursor.getColumnIndex(COLUMN_ID);
             int mounstroIndex = cursor.getColumnIndex(COLUMN_MOUNSTRO);
             int ataqueIndex = cursor.getColumnIndex(COLUMN_ATAQUE);
             int defensaIndex = cursor.getColumnIndex(COLUMN_DEFENSA);
@@ -112,13 +113,14 @@ public class DbYuGiHo extends DbHelper {
             int longitudIndex = cursor.getColumnIndex(COLUMN_LONGITUD);
 
             while (cursor.moveToNext()) {
+                int id = cursor.getInt(idIndex);
                 String mounstro = cursor.getString(mounstroIndex);
                 String ataque = cursor.getString(ataqueIndex);
                 String defensa = cursor.getString(defensaIndex);
                 double latitud = cursor.getDouble(latitudIndex);
                 double longitud = cursor.getDouble(longitudIndex);
 
-                Carta carta = new Carta(mounstro, ataque, defensa, latitud, longitud);
+                Carta carta = new Carta(id, mounstro, ataque, defensa, latitud, longitud);
                 listaCartas.add(carta);
             }
 
@@ -128,11 +130,13 @@ public class DbYuGiHo extends DbHelper {
         }
 
         return listaCartas;
+
     }
+
     public Carta obtenerDetalleCarta(int cartaId) {
         SQLiteDatabase db = getReadableDatabase();
         String[] projection = {
-                COLUMN_NOMBRE,
+                COLUMN_MOUNSTRO,
                 COLUMN_ATAQUE,
                 COLUMN_DEFENSA
         };
@@ -141,10 +145,14 @@ public class DbYuGiHo extends DbHelper {
         Cursor cursor = db.query(TABLE_CARTAS, projection, selection, selectionArgs, null, null, null);
         Carta carta = null;
         if (cursor != null && cursor.moveToFirst()) {
-            String nombre = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NOMBRE));
+            String mounstro = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_MOUNSTRO));
             String ataque = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ATAQUE));
             String defensa = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DEFENSA));
-            carta = new Carta(cartaId, nombre, ataque, defensa);
+            String latitud = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_LATITUD));
+            String longitud = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_LONGITUD));
+
+
+            carta = new Carta(cartaId, mounstro, ataque, defensa,Double.parseDouble(latitud),Double.parseDouble(longitud));
             cursor.close();
         }
         return carta;

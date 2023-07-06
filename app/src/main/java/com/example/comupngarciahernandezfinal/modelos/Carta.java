@@ -57,7 +57,9 @@ public class Carta {
     private double latitud;
     private double longitud;
 
-    public Carta( String mounstro, String ataque,String defensa, double latitud, double longitud) {
+    public Carta( int id, String mounstro, String ataque,String defensa, double latitud, double longitud) {
+
+        this.id = id;
         this.mounstro = mounstro;
         this.ataque = ataque;
         this.defensa = defensa;

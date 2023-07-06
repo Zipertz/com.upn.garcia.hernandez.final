@@ -15,7 +15,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String COLUMN_MOUNSTRO = "mounstro";
     public static final String COLUMN_ATAQUE = "ataque";
     public static final String COLUMN_DEFENSA = "defensa";
-
+    public static final String COLUMN_ID = "id";
     public static final String COLUMN_LATITUD = "latitud";
     public static final String COLUMN_LONGITUD = "longitud";
 

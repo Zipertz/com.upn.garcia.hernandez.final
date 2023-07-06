@@ -5,5 +5,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetalleCartaActivity">
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="654dp"
+        android:foregroundGravity="center_vertical"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:gravity="center"
+            android:text="Detalle Carta" />
+
+        <EditText
+            android:id="@+id/tvNombreCarta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="nombre"
+            android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/tvAtaque"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="nombre"
+            android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/tvDefensa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="nombre"
+            android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/tvLatitud"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="nombre"
+            android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/tvLongitud"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="nombre"
+            android:inputType="textPersonName" />
+
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
