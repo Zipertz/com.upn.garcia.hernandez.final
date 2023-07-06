@@ -25,9 +25,18 @@
 
         <ImageView
             android:id="@+id/imageMonstruo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            tools:srcCompat="@tools:sample/avatars" />
+        <EditText
+            android:id="@+id/tvImagenCarta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:ems="10"
+            android:hint="nombre"
+            android:inputType="textPersonName"
+            android:visibility="gone" />
+
 
         <EditText
             android:id="@+id/tvNombreCarta"
