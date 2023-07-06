@@ -23,6 +23,12 @@
             android:gravity="center"
             android:text="Detalle Carta" />
 
+        <ImageView
+            android:id="@+id/imageMonstruo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@tools:sample/avatars" />
+
         <EditText
             android:id="@+id/tvNombreCarta"
             android:layout_width="match_parent"
