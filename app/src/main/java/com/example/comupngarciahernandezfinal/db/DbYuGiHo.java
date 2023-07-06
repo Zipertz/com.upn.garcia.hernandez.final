@@ -77,7 +77,7 @@ public class DbYuGiHo extends DbHelper {
     }
 
 
-    public long insertaCartas(int duelistaId, String mounstro, String ataque,String defensa, double latitud, double longitud) {
+    public long insertaCartas(int duelistaId, String mounstro, String ataque,String defensa,String imagen, double latitud, double longitud) {
         long cartaId = 0;
         try {
             DbHelper dbHelper = new DbHelper(context);
@@ -88,6 +88,7 @@ public class DbYuGiHo extends DbHelper {
             values.put("mounstro", mounstro);
             values.put("ataque", ataque);
             values.put("defensa", defensa);
+            values.put("imagen", imagen);
             values.put("latitud", latitud);
             values.put("longitud", longitud);
 
@@ -109,6 +110,7 @@ public class DbYuGiHo extends DbHelper {
             int mounstroIndex = cursor.getColumnIndex(COLUMN_MOUNSTRO);
             int ataqueIndex = cursor.getColumnIndex(COLUMN_ATAQUE);
             int defensaIndex = cursor.getColumnIndex(COLUMN_DEFENSA);
+            int imagenIndex = cursor.getColumnIndex(COLUMN_IMAGE);
             int latitudIndex = cursor.getColumnIndex(COLUMN_LATITUD);
             int longitudIndex = cursor.getColumnIndex(COLUMN_LONGITUD);
 
@@ -117,10 +119,11 @@ public class DbYuGiHo extends DbHelper {
                 String mounstro = cursor.getString(mounstroIndex);
                 String ataque = cursor.getString(ataqueIndex);
                 String defensa = cursor.getString(defensaIndex);
+                String imagen = cursor.getString(imagenIndex);
                 double latitud = cursor.getDouble(latitudIndex);
                 double longitud = cursor.getDouble(longitudIndex);
 
-                Carta carta = new Carta(id, mounstro, ataque, defensa, latitud, longitud);
+                Carta carta = new Carta(id, mounstro, ataque, defensa,imagen,latitud, longitud);
                 listaCartas.add(carta);
             }
 
@@ -138,7 +141,10 @@ public class DbYuGiHo extends DbHelper {
         String[] projection = {
                 COLUMN_MOUNSTRO,
                 COLUMN_ATAQUE,
-                COLUMN_DEFENSA
+                COLUMN_DEFENSA,
+                COLUMN_IMAGE,
+                COLUMN_LATITUD,
+                COLUMN_LONGITUD
         };
         String selection = COLUMN_ID + " = ?";
         String[] selectionArgs = {String.valueOf(cartaId)};
@@ -148,11 +154,12 @@ public class DbYuGiHo extends DbHelper {
             String mounstro = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_MOUNSTRO));
             String ataque = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ATAQUE));
             String defensa = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DEFENSA));
+            String imagen = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IMAGE));
             String latitud = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_LATITUD));
             String longitud = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_LONGITUD));
 
 
-            carta = new Carta(cartaId, mounstro, ataque, defensa,Double.parseDouble(latitud),Double.parseDouble(longitud));
+            carta = new Carta(cartaId, mounstro, ataque, defensa,imagen,Double.parseDouble(latitud),Double.parseDouble(longitud));
             cursor.close();
         }
         return carta;

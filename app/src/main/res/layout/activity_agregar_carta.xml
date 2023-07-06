@@ -19,6 +19,13 @@
             android:layout_height="90dp"
             android:gravity="center"
             android:text="Registro Cartas" />
+        <EditText
+            android:id="@+id/etImagen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Imagen"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/etMounstro"
@@ -43,6 +50,7 @@
             android:ems="10"
             android:hint="defensa"
             android:inputType="textPersonName" />
+
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -43,7 +43,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AgregarCartaActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener, LocationListener {
-    EditText etLatitud, etLongitud, etMounstro, etAtaque, etDefensa;
+    EditText etLatitud, etLongitud, etMounstro, etAtaque, etDefensa,etImagen;
     Button btnAgregarCarta;
     int duelistaId;
     GoogleMap mMap;
@@ -58,6 +58,7 @@ public class AgregarCartaActivity extends AppCompatActivity implements OnMapRead
         etMounstro = findViewById(R.id.etMounstro);
         etAtaque = findViewById(R.id.etAtaque);
         etDefensa = findViewById(R.id.etDefensa);
+        etImagen = findViewById(R.id.etImagen);
         etLatitud = findViewById(R.id.etLatitud);
         etLongitud = findViewById(R.id.etLongitud);
         btnAgregarCarta = findViewById(R.id.btnAgregarCartas);
@@ -91,12 +92,13 @@ public class AgregarCartaActivity extends AppCompatActivity implements OnMapRead
                 String mounstro = etMounstro.getText().toString();
                 String ataque = etAtaque.getText().toString();
                 String defensa = etDefensa.getText().toString();
+                String imagen = etImagen.getText().toString();
                 double latitud = Double.parseDouble(etLatitud.getText().toString());
                 double longitud = Double.parseDouble(etLongitud.getText().toString());
 
                 // Llamar al método para insertar el carta en la base de datos
                 DbYuGiHo dbYuGiHo = new DbYuGiHo(AgregarCartaActivity.this);
-                long cartaId = dbYuGiHo.insertaCartas(duelistaId, mounstro, ataque, defensa, latitud, longitud);
+                long cartaId = dbYuGiHo.insertaCartas(duelistaId, mounstro, ataque, defensa,imagen, latitud, longitud);
                 //insertaMovimiento(cuentaId, tipoMovimiento, monto, motivo, latitud, longitud);
 
                 // Verificar si la inserción del movimiento fue exitosa
@@ -143,8 +145,8 @@ public class AgregarCartaActivity extends AppCompatActivity implements OnMapRead
             String picturePath = cursor.getString(columnIndex);
             cursor.close(); // close cursor
 
-            Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
-
+           Log.i("ImagenSIUUUU",picturePath);
+            etImagen.setText(String.valueOf(picturePath));
 
         }
     }

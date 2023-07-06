@@ -23,6 +23,8 @@ public class DetalleCartaActivity extends AppCompatActivity {
         tvNombreCarta = findViewById(R.id.tvNombreCarta);
         tvAtaque = findViewById(R.id.tvAtaque);
         tvDefensa = findViewById(R.id.tvDefensa);
+        tvLatitud = findViewById(R.id.tvLatitud);
+        tvLongitud = findViewById(R.id.tvLongitud);
 
         // Obtener los datos de la carta enviados desde la actividad anterior
         Intent intent = getIntent();
@@ -33,11 +35,11 @@ public class DetalleCartaActivity extends AppCompatActivity {
             Carta carta = obtenerDetalleCarta(cartaId);
             if (carta != null) {
                 // Mostrar los detalles de la carta en los TextView correspondientes
-                tvNombreCarta.setText(carta.getNombre());
+                tvNombreCarta.setText(carta.getMounstro());
                 tvAtaque.setText("Ataque: " + carta.getAtaque());
                 tvDefensa.setText("Defensa: " + carta.getDefensa());
-                tvAtaque.setText("Longitud: " + carta.getAtaque());
-                tvDefensa.setText("Latitud: " + carta.getDefensa());
+                tvLatitud.setText("Latitud: " + carta.getLatitud());
+                tvLongitud.setText("longitud: " + carta.getLongitud());
             }
         }
     }
@@ -52,4 +54,3 @@ public class DetalleCartaActivity extends AppCompatActivity {
     }
 
     }
-}
