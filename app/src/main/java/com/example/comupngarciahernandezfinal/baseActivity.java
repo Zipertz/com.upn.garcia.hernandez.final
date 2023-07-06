@@ -38,7 +38,7 @@ public class baseActivity extends AppCompatActivity {
         btnCrearDuelista.setOnClickListener(view -> {
 
 
-            Intent intent = new Intent(getApplicationContext(), CrearDuelistaActivity.class);
+            Intent intent = new Intent(getApplicationContext(), CreaDuelistaActivity.class);
             startActivity(intent);
 
         });

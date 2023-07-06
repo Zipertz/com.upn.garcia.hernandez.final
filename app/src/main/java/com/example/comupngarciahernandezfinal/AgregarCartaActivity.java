@@ -81,7 +81,7 @@ public class AgregarCartaActivity extends AppCompatActivity implements OnMapRead
 
                 // Llamar al método para insertar el carta en la base de datos
                 DbYuGiHo dbYuGiHo = new DbYuGiHo(AgregarCartaActivity.this);
-                long cartaId = dbYuGiHo.insertaCartas(duelistaId, mounstro, ataque, defensa, latitud, longitud)
+                long cartaId = dbYuGiHo.insertaCartas(duelistaId, mounstro, ataque, defensa, latitud, longitud);
                 //insertaMovimiento(cuentaId, tipoMovimiento, monto, motivo, latitud, longitud);
 
                 // Verificar si la inserción del movimiento fue exitosa

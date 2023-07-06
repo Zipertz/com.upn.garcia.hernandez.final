@@ -11,7 +11,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NOMBRE = "yuGiHo.db";
     public static final String TABLE_DUELISTA = "duelista";
     public static final String TABLE_CARTAS = "cartas";
-
+    public static final String COLUMN_DUELISTA_ID = "duelistaId";
     public static final String COLUMN_MOUNSTRO = "mounstro";
     public static final String COLUMN_ATAQUE = "ataque";
     public static final String COLUMN_DEFENSA = "defensa";
@@ -30,16 +30,16 @@ public class DbHelper extends SQLiteOpenHelper {
                 "nombre TEXT NOT NULL)";
         sqLiteDatabase.execSQL(createDuelistasTableQuery);
 
-        // Crear tabla Mounstros
         String createCartasTableQuery = "CREATE TABLE " + TABLE_CARTAS + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "cuentaId INTEGER," +
                 COLUMN_MOUNSTRO + " TEXT," +
-                COLUMN_ATAQUE + "  TEXT," +
+                COLUMN_ATAQUE + " TEXT," +
                 COLUMN_DEFENSA + " TEXT," +
                 COLUMN_LATITUD + " REAL," +
                 COLUMN_LONGITUD + " REAL," +
-                "FOREIGN KEY(duelistaId) REFERENCES " + TABLE_DUELISTA + "(id))";
+                COLUMN_DUELISTA_ID + " INTEGER," + // Actualiza esta línea
+                "FOREIGN KEY(" + COLUMN_DUELISTA_ID + ") REFERENCES " + TABLE_DUELISTA + "(id))";
         sqLiteDatabase.execSQL(createCartasTableQuery);
     }
 
